@@ -1,0 +1,18 @@
+# General
+.DS_Store
+.env
+*.log
+
+# Node.js (if applicable)
+node_modules/
+dist/
+
+# Python (if applicable)
+__pycache__/
+.venv/
+*.pyc
+
+# Build artifacts
+target/
+bin/
+*.exe
