@@ -8,7 +8,7 @@
  */
 
 // API Configuration
-const API_BASE_URL = 'http://api.weatherapi.com/v1';
+const API_BASE_URL = 'https://api.weatherapi.com/v1';
 
 /**
  * Gets the API key from environment variables
