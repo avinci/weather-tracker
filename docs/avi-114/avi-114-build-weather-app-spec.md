@@ -18,18 +18,18 @@ A web-based weather tracking application that provides users with comprehensive 
 
 ## Discovery Log
 
-| # | Question | Answer |
-|---|----------|--------|
-| Q1 | What weather API or data source should the application use? | WeatherAPI.com |
-| Q2 | For the search functionality - when a user searches by zip code, city name, or region name, should the app automatically detect which type of search they're performing, or should users select the search type first? | It should automatically detect |
-| Q3 | When displaying the 24-hour hourly forecast, what specific weather information should be shown for each hour? | Most usual pieces of info (temperature, conditions/icon, precipitation chance, wind speed, humidity) |
-| Q4 | For the 7-day daily forecast, what information should be displayed for each day? | The most common stuff (high/low temps, conditions/icon, precipitation chance) |
-| Q5 | Should the app display the current weather conditions in addition to the forecasts, or just show the hourly and daily forecasts only? | Sure that's a good idea - include current conditions |
-| Q6 | When a user first opens the app (before searching), what should they see? | Default location would be good. Let's use San Francisco |
-| Q7 | If the search fails (e.g., invalid location, API error, no results found), how should the app handle this? | Make it a user friendly experience |
-| Q8 | Should the app display any location information along with the forecast so users know what location they're viewing? | Sure that's a good idea |
-| Q9 | For the hourly forecast tab showing 24 hours - should this be the next 24 hours from now, or should it show a specific day's hourly breakdown? | Next 24 hours from now |
-| Q10 | Should the app automatically refresh the weather data periodically while the user has it open, or only fetch new data when the user performs a search or manually refreshes? | Manual refresh, show when the last refresh occurred |
+| #   | Question                                                                                                                                                                                                               | Answer                                                                                               |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Q1  | What weather API or data source should the application use?                                                                                                                                                            | WeatherAPI.com                                                                                       |
+| Q2  | For the search functionality - when a user searches by zip code, city name, or region name, should the app automatically detect which type of search they're performing, or should users select the search type first? | It should automatically detect                                                                       |
+| Q3  | When displaying the 24-hour hourly forecast, what specific weather information should be shown for each hour?                                                                                                          | Most usual pieces of info (temperature, conditions/icon, precipitation chance, wind speed, humidity) |
+| Q4  | For the 7-day daily forecast, what information should be displayed for each day?                                                                                                                                       | The most common stuff (high/low temps, conditions/icon, precipitation chance)                        |
+| Q5  | Should the app display the current weather conditions in addition to the forecasts, or just show the hourly and daily forecasts only?                                                                                  | Sure that's a good idea - include current conditions                                                 |
+| Q6  | When a user first opens the app (before searching), what should they see?                                                                                                                                              | Default location would be good. Let's use San Francisco                                              |
+| Q7  | If the search fails (e.g., invalid location, API error, no results found), how should the app handle this?                                                                                                             | Make it a user friendly experience                                                                   |
+| Q8  | Should the app display any location information along with the forecast so users know what location they're viewing?                                                                                                   | Sure that's a good idea                                                                              |
+| Q9  | For the hourly forecast tab showing 24 hours - should this be the next 24 hours from now, or should it show a specific day's hourly breakdown?                                                                         | Next 24 hours from now                                                                               |
+| Q10 | Should the app automatically refresh the weather data periodically while the user has it open, or only fetch new data when the user performs a search or manually refreshes?                                           | Manual refresh, show when the last refresh occurred                                                  |
 
 ## User Stories
 

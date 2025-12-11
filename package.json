@@ -1,0 +1,43 @@
+{
+  "name": "weather-tracker",
+  "version": "1.0.0",
+  "description": "A web-based weather tracking application providing current conditions, 24-hour hourly forecasts, and 7-day daily forecasts.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .vue,.js",
+    "format": "prettier --write \"**/*.{vue,js,json,css,md}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avinci/weather-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avinci/weather-tracker/issues"
+  },
+  "homepage": "https://github.com/avinci/weather-tracker#readme",
+  "dependencies": {
+    "pinia": "^2.3.1",
+    "vue": "^3.5.25"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.6.2",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.22",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.33.0",
+    "happy-dom": "^10.11.2",
+    "postcss": "^8.5.6",
+    "prettier": "^3.7.4",
+    "tailwindcss": "^3.4.19",
+    "vite": "^4.5.14",
+    "vitest": "^0.34.6"
+  }
+}

@@ -3,9 +3,13 @@
 .env
 *.log
 
-# Node.js (if applicable)
+# Node.js / Vue / Vite
 node_modules/
 dist/
+dist-ssr/
+*.local
+.vite/
+coverage/
 
 # Python (if applicable)
 __pycache__/
@@ -16,3 +20,11 @@ __pycache__/
 target/
 bin/
 *.exe
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.swp
+*.swo
+*~
