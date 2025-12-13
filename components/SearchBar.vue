@@ -180,8 +180,13 @@ export default {
     /**
      * Handles the search form submission
      * Validates input, detects search type, and emits search event
+     * @fires search - With { query, type, originalInput } payload
      */
     function handleSearch() {
+      // Debounce: prevent rapid submissions while already searching
+      if (isSearching.value) {
+        return;
+      }
       // Clear any previous validation error
       validationError.value = '';
 
@@ -255,12 +260,16 @@ export default {
       inputRef.value?.focus();
     }
 
-    // Global keyboard shortcut for focusing search
+    /**
+     * Global keyboard shortcut handler for focusing search
+     * @param {KeyboardEvent} event - The keyboard event
+     */
     function handleGlobalKeydown(event) {
       // Focus search on '/' key when not in an input
-      if (event.key === '/' && !isInputElement(event.target)) {
+      // Defensive: verify inputRef exists before attempting focus
+      if (event.key === '/' && !isInputElement(event.target) && inputRef.value) {
         event.preventDefault();
-        focus();
+        inputRef.value.focus();
       }
     }
 
@@ -309,20 +318,6 @@ export default {
 .search-input {
   /* Ensure consistent height across browsers */
   min-height: 48px;
-}
-
-/* Loading spinner animation */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
 }
 
 /* Focus visible for better accessibility */
