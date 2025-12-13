@@ -7,6 +7,7 @@ import { mount } from '@vue/test-utils';
 import { setActivePinia, createPinia } from 'pinia';
 import DailyForecast from '../../components/DailyForecast.vue';
 import { useWeatherStore } from '../../stores/weather.js';
+import { PLACEHOLDER_ICON } from '../../utils/formatters.js';
 
 describe('DailyForecast', () => {
   let wrapper;
@@ -346,6 +347,28 @@ describe('DailyForecast', () => {
 
       const img = wrapper.find('img');
       expect(img.attributes('src')).toBe('');
+    });
+
+    it('should have error handler on images', () => {
+      store.dailyForecast = mockDailyForecast;
+      mountComponent();
+
+      // Verify the @error handler is present by checking the component exposes handleImageError
+      expect(typeof wrapper.vm.handleImageError).toBe('function');
+    });
+
+    it('should replace image src with placeholder on error', () => {
+      store.dailyForecast = [{
+        ...mockDailyForecast[0],
+        conditionIcon: 'https://invalid-url.com/broken.png',
+      }];
+      mountComponent();
+
+      // Simulate image error event
+      const mockEvent = { target: { src: '' } };
+      wrapper.vm.handleImageError(mockEvent);
+      
+      expect(mockEvent.target.src).toBe(PLACEHOLDER_ICON);
     });
   });
 

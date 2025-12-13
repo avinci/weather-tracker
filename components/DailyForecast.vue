@@ -1,12 +1,17 @@
 <template>
   <div class="daily-forecast">
     <!-- Loading State -->
-    <div v-if="isLoading" class="space-y-3" role="status" aria-label="Loading daily forecast">
+    <div
+      v-if="isLoading"
+      class="space-y-3"
+      role="status"
+      aria-label="Loading daily forecast"
+    >
       <div
         v-for="i in 7"
         :key="i"
         class="animate-pulse bg-gray-200 rounded-lg h-16"
-      ></div>
+      />
     </div>
 
     <!-- Empty State -->
@@ -19,7 +24,11 @@
     </div>
 
     <!-- Forecast List -->
-    <ul v-else class="space-y-2" aria-label="7-day weather forecast">
+    <ul
+      v-else
+      class="space-y-2"
+      aria-label="7-day weather forecast"
+    >
       <li
         v-for="day in dailyForecast"
         :key="day.date"
@@ -52,18 +61,25 @@
             width="40"
             height="40"
             loading="lazy"
-          />
+            @error="handleImageError"
+          >
         </div>
 
         <!-- High/Low Temps -->
         <div class="flex items-center gap-3 text-right">
           <div class="w-12">
-            <span class="font-bold text-gray-900" aria-label="High temperature">
+            <span
+              class="font-bold text-gray-900"
+              aria-label="High temperature"
+            >
               {{ formatTemperature(day.highTemp) }}
             </span>
           </div>
           <div class="w-12">
-            <span class="text-gray-500" aria-label="Low temperature">
+            <span
+              class="text-gray-500"
+              aria-label="Low temperature"
+            >
               {{ formatTemperature(day.lowTemp) }}
             </span>
           </div>
@@ -76,10 +92,17 @@
             class="text-sm text-blue-600"
             :aria-label="`${day.precipitationChance}% chance of precipitation`"
           >
-            <span class="inline-block mr-1" aria-hidden="true">💧</span>
+            <span
+              class="inline-block mr-1"
+              aria-hidden="true"
+            >💧</span>
             {{ day.precipitationChance }}%
           </span>
-          <span v-else class="text-sm text-gray-400" aria-label="No precipitation expected">
+          <span
+            v-else
+            class="text-sm text-gray-400"
+            aria-label="No precipitation expected"
+          >
             —
           </span>
         </div>
@@ -91,6 +114,14 @@
 <script>
 import { computed } from 'vue';
 import { useWeatherStore } from '../stores/weather.js';
+import {
+  isToday,
+  formatDayName,
+  formatDate,
+  formatTemperature,
+  getIconUrl,
+  PLACEHOLDER_ICON,
+} from '../utils/formatters.js';
 
 export default {
   name: 'DailyForecast',
@@ -103,62 +134,11 @@ export default {
     const isLoading = computed(() => weatherStore.isLoading);
 
     /**
-     * Checks if a date string represents today
-     * @param {string} dateStr - Date in YYYY-MM-DD format
-     * @returns {boolean} True if date is today
+     * Handles image load errors by replacing src with placeholder
+     * @param {Event} event - Image error event
      */
-    function isToday(dateStr) {
-      const today = new Date();
-      const todayStr = today.toISOString().split('T')[0];
-      return dateStr === todayStr;
-    }
-
-    /**
-     * Formats a date string to day name (e.g., "Monday")
-     * @param {string} dateStr - Date in YYYY-MM-DD format
-     * @returns {string} Formatted day name
-     */
-    function formatDayName(dateStr) {
-      const date = new Date(dateStr + 'T00:00:00');
-      return date.toLocaleDateString('en-US', { weekday: 'long' });
-    }
-
-    /**
-     * Formats a date string to readable date (e.g., "Jan 15")
-     * @param {string} dateStr - Date in YYYY-MM-DD format
-     * @returns {string} Formatted date
-     */
-    function formatDate(dateStr) {
-      const date = new Date(dateStr + 'T00:00:00');
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    }
-
-    /**
-     * Formats temperature with degree symbol
-     * @param {number} temp - Temperature value
-     * @returns {string} Formatted temperature (e.g., "72°")
-     */
-    function formatTemperature(temp) {
-      if (temp === null || temp === undefined) {
-        return '--°';
-      }
-      return `${Math.round(temp)}°`;
-    }
-
-    /**
-     * Ensures icon URL uses HTTPS protocol
-     * @param {string} iconUrl - Icon URL from API
-     * @returns {string} HTTPS URL
-     */
-    function getIconUrl(iconUrl) {
-      if (!iconUrl) {
-        return '';
-      }
-      // Ensure HTTPS protocol
-      if (iconUrl.startsWith('//')) {
-        return `https:${iconUrl}`;
-      }
-      return iconUrl;
+    function handleImageError(event) {
+      event.target.src = PLACEHOLDER_ICON;
     }
 
     return {
@@ -169,6 +149,7 @@ export default {
       formatDate,
       formatTemperature,
       getIconUrl,
+      handleImageError,
     };
   },
 };
